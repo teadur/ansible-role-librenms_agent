@@ -1,0 +1,16 @@
+---
+
+#- name: Install Dependancies for mysql script
+  #  package:
+
+          #    name: "{{ librenms_agent__scripts_mysql_packages }}"
+    #    state: present
+
+- name: configure sudoers
+  template:
+    src: "librenms_agent_sudoers.j2"
+    dest: "/etc/sudoers.d/librenms_agent"
+    owner: root
+    group: root
+    mode: 0440
+  notify: Restart snmpd

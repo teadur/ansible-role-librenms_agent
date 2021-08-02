@@ -14,3 +14,7 @@
 - name: MySQL Script
   include_tasks: mysql.yml
   when: "'mysql' in librenms_agent__agent_local_scripts or 'mysql' in librenms_agent__snmp_scripts"
+
+- name: Sudoers for scripts
+  include_tasks: sudo.yml
+  when: "'docker-stats.sh' in librenms_agent__agent_local_scripts or 'docker-stats.sh' in librenms_agent__snmp_scripts"
