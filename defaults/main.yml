@@ -22,7 +22,7 @@ librenms_agent__mysql_password:
 librenms_agent__mysql_port:
 
 librenms_agent__scripts_update: false
-
+librenms_agent__scripts_smart_disk: sda
 librenms_agent__agent_local_scripts: []
 #  - apache
 #  - bind

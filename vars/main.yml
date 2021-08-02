@@ -11,6 +11,9 @@ librenms_agent__scripts_mysql_packages:
   - php-cli
   - php-mysql
 
+librenms_agent__scripts_smart_packages:
+  - smartmontools
+
 librenms_agent__scripts:
   - name: apache-stats
     file: apache-stats
@@ -166,6 +169,9 @@ librenms_agent__scripts:
   - name: smart
     file: smart
     extend: smart
+    sudo:
+        path: /usr/bin/sudo
+        exec: /usr/bin/env smartctl
   - name: tinydns
     file: tinydns
     extend: tinydns
