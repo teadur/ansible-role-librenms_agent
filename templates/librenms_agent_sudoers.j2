@@ -1,2 +1,24 @@
 Debian-snmp ALL=(ALL) NOPASSWD: /etc/snmp/smart, /usr/bin/env smartctl
-Debian-snmp ALL=(ALL) NOPASSWD: /etc/snmp/scripts/docker-stats.sh, /usr/bin/env docker
+{% if librenms_agent__snmp_scripts is defined and librenms_agent__snmp_scripts | length > 0 %}
+{% for scripts in librenms_agent__snmp_scripts %}
+{% for script in librenms_agent__scripts %}
+{% if scripts == script.file %}
+{% if script.sudo is defined %}
+# {{ script.name }}
+Debian-snmp ALL=(ALL) NOPASSWD: {{ librenms_agent__scripts_dir }}/{{ script.file }}, {{ script.sudo.exec }} {% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if librenms_agent__agent_local_scripts is defined and librenms_agent__agent_local_scripts | length > 0 %}
+{% for scripts in librenms_agent__agent_local_scripts %}
+{% for script in librenms_agent__scripts %}
+{% if scripts == script.file %}
+{% if script.sudo is defined %}
+# {{ script.name }}
+Debian-snmp ALL=(ALL) NOPASSWD: {{ librenms_agent__scripts_dir }}/{{ script.file }}, {{ script.sudo.exec }}{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+

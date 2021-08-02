@@ -35,7 +35,9 @@ librenms_agent__scripts:
     extend: certificate
   - name: docker-stats.sh
     file: docker-stats.sh
-    sudo: /usr/bin/sudo
+    sudo: 
+        path: /usr/bin/sudo
+        exec: /usr/bin/env docker
     extend: docker
   - name: dhcp-status
     file: dhcp-status.sh
