@@ -33,6 +33,9 @@ librenms_agent__scripts:
   - name: certificate
     file: certificate.py
     extend: certificate
+  - name: docker-stats.sh
+    file: docker-stats.sh
+    extend: docker
   - name: dhcp-status
     file: dhcp-status.sh
     extend: dhcp-stats
