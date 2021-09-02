@@ -1,0 +1,15 @@
+---
+
+- name: Install Dependancies for smartctl script
+  package:
+    name: "{{ librenms_agent__scripts_smart_packages }}"
+    state: present
+
+- name: Smart Config snmp
+  template:
+    src: "scripts/smart.config.j2"
+    dest: "/etc/snmp/scripts/smart.config" # FIXME Hardcode
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart snmpd

@@ -1,0 +1,9 @@
+# https://raw.githubusercontent.com/librenms/librenms-agent/master/check_mk_agent
+# cp check_mk_agent /usr/bin/check_mk_agent	
+# chmod +x /usr/bin/check_mk_agent
+# cp check_mk@.service check_mk.socket /etc/systemd/system
+# mkdir -p /usr/lib/check_mk_agent/plugins /usr/lib/check_mk_agent/local
+# 5: Copy each of the scripts from agent-local/ into /usr/lib/check_mk_agent/local that you require to be graphed. You can find detail setup instructions for specific applications above.
+# 6: Make each one executable that you want to use with chmod +x /usr/lib/check_mk_agent/local/$script
+# systemctl enable check_mk.socket && systemctl start check_mk.socket
+#
