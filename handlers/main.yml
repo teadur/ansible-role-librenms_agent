@@ -1,4 +1,8 @@
 ---
+- name: restart check_mk
+  systemd:
+    name: check_mk.socket
+    state: restarted
 
 - name: Restart snmpd
   service:

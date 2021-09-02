@@ -3,6 +3,23 @@
 - name: "Include {{ ansible_os_family }} Specific Variables"
   include_vars: "{{ ansible_os_family }}.yml"
 
+# tobias-richter
+- name: clone librenms agent setup.
+  git:
+    repo: "{{ librenms_agent_agent_repo }}"
+    dest: "{{ librenms_agent_agent_dir }}"
+    version: "{{ librenms_agent_agent_branch }}"
+  tags:
+    - librenms-agent-clone
+
+- name: setup check_mk.
+  include_tasks: setup_check_mk.yml
+  tags:
+    - librenms-agent-check_mk
+      
+#- name: install librenms(check_mk) agent
+#  include_tasks: agent/main.yml
+
 - name: Install Dependancies
   package:
     name: "{{ librenms_agent__dependant_packages }}"
@@ -44,14 +61,15 @@
   when: librenms_agent__snmp_no_logging
   notify: Reload snmpd
 
-- name: Configure snmp
-  template:
-    src: "snmpd.conf.j2"
-    dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
-    owner: root
-    group: root
-    mode: 0644
-  notify: Restart snmpd
+  #- name: Configure snmp
+  #template:
+  #  src: "snmpd.conf.j2"
+  #  dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
+  #  owner: root
+  #  group: root
+  #  mode: 0644
+  #notify: Restart snmpd
 
 - name: Configure Scripts
   include_tasks: scripts/main.yml
+ 
