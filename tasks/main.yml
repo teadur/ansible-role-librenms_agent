@@ -61,14 +61,14 @@
   when: librenms_agent__snmp_no_logging
   notify: Reload snmpd
 
-  #- name: Configure snmp
-  #template:
-  #  src: "snmpd.conf.j2"
-  #  dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
-  #  owner: root
-  #  group: root
-  #  mode: 0644
-  #notify: Restart snmpd
+- name: Configure snmp
+  template:
+    src: "snmpd.conf.j2"
+    dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart snmpd
 
 - name: Configure Scripts
   include_tasks: scripts/main.yml
