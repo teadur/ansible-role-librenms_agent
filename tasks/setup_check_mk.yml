@@ -68,7 +68,7 @@
 
 - name: "checkmk : enable check_mk service."
   systemd:
-    name: check_mk.socket
+    name: check_mk@service
     enabled: yes
     daemon_reload: yes
   notify: restart check_mk

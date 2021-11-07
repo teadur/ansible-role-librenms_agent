@@ -13,7 +13,7 @@
     - librenms-agent-clone
 
 - name: setup check_mk.
-  include_tasks: setup_check_mk.yml
+  import_tasks: setup_check_mk.yml
   tags:
     - librenms-agent-check_mk
       
