@@ -1,0 +1,5 @@
+#This is a comment
+useSN=0
+smartctl=/usr/sbin/smartctl
+cache=/var/cache/smart
+{{ librenms_agent__scripts_smart_disk }} /dev/{{ librenms_agent__scripts_smart_disk }} -d nvme

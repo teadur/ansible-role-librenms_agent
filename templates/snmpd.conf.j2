@@ -176,7 +176,7 @@ sysContact     {{ librenms_agent__snmp_contact | default('Me <me@example.org>', 
 {% for script in librenms_agent__scripts %}
 {% if scripts == script.file %}
 # {{ script.name }}
-extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
+extend {{ script.extend }} {% if script.sudo is defined %} {{ script.sudo.path }} {% endif %} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
 
 
 {% endif %}
@@ -188,7 +188,7 @@ extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{%
 {% for script in librenms_agent__scripts %}
 {% if scripts == script.file %}
 # {{ script.name }}
-extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
+extend {{ script.extend }} {% if script.sudo is defined %} {{ script.sudo.path }} {% endif %} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
 
 
 {% endif %}

@@ -22,7 +22,7 @@ librenms_agent__mysql_password:
 librenms_agent__mysql_port:
 
 librenms_agent__scripts_update: false
-
+librenms_agent__scripts_smart_disk: sda
 librenms_agent__agent_local_scripts: []
 #  - apache
 #  - bind
@@ -103,3 +103,17 @@ librenms_agent__snmp_scripts: []
 #  - zfs-freebsd
 #  - zfs-freebsd.py
 #  - zfs-linux
+
+# https://github.com/tobias-richter/ansible-librenms-agent/blob/master/defaults/main.yml
+librenms_agent_agent_repo: https://github.com/tobias-richter/librenms-agent.git
+librenms_agent_agent_dir: /opt/librenms-agent
+librenms_agent_agent_branch: master
+librenms_agent_snmp_owner: "Debian-snmp"
+librenms_agent_snmp_group: "root"
+librenms_agent_check_mk_listenstream: 6556
+librenms_agent_check_mk_dir: /usr/lib/check_mk_agent
+librenms_agent_check_mk_local_dir: "{{ librenms_agent_check_mk_dir }}/local"
+librenms_agent_check_mk_plugins_dir: "{{ librenms_agent_check_mk_dir }}/plugins"
+#librenms_agent_check_mk_extensions: "{{ librenms_agent__agent_local_scripts }}"
+#librenms_agent_check_mk_extensions: []
+
